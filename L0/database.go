@@ -286,7 +286,7 @@ func getRandomMessage() Order {
 var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 func randomString(l int) string {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixMicro())
 
 	s := make([]rune, l)
 	for i := range s {
