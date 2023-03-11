@@ -103,11 +103,13 @@ func cd(args []string) error {
 func pwd() (string, error) {
 
 	// получение текущей директории
-	if wd, err := os.Getwd(); err != nil {
+	wd, err := os.Getwd()
+	if err != nil {
 		return "", err
-	} else {
-		return wd, nil
 	}
+
+	return wd, nil
+
 }
 
 func echo(args []string) (string, error) {
@@ -154,15 +156,17 @@ func kill(args []string) error {
 
 func psn() (procs []string, err error) {
 
-	if ps, err := ps.Processes(); err != nil {
+	ps, err := ps.Processes()
+	if err != nil {
 		return []string{}, err
-	} else {
-		for _, p := range ps {
-			procs = append(procs, fmt.Sprintf("%7v %v\n", p.Pid(), p.Executable()))
-		}
-		// возвращает массив, где каждая строка это процесс
-		return procs, nil
 	}
+
+	for _, p := range ps {
+		procs = append(procs, fmt.Sprintf("%7v %v\n", p.Pid(), p.Executable()))
+	}
+	// возвращает массив, где каждая строка это процесс
+	return procs, nil
+
 }
 
 func ex(args []string) error {
@@ -187,19 +191,19 @@ func ex(args []string) error {
 func fork() error {
 
 	// поиск программы shell (qsh)
-	if path, err := os.Executable(); err != nil {
+	path, err := os.Executable()
+	if err != nil {
 		return err
-	} else {
-		// запуск qsh
-		cmd := exec.Command(path)
-		if err := cmd.Start(); err != nil {
-			return err
-		}
-		if err := cmd.Wait(); err != nil {
-			return err
-		}
-		return nil
 	}
+
+	// запуск qsh
+	cmd := exec.Command(path)
+	if err := cmd.Start(); err != nil {
+		return err
+	}
+
+	return nil
+
 }
 
 func main() {

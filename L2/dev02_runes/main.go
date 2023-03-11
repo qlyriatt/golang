@@ -8,7 +8,7 @@ import (
 	"unicode"
 )
 
-func Unpack(input string) (string, error) {
+func unpack(input string) (string, error) {
 
 	// пустая строка
 	if len(input) < 1 {
@@ -78,7 +78,7 @@ func main() {
 	var input string
 	fmt.Scanln(&input)
 
-	if output, err := Unpack(input); err != nil {
+	if output, err := unpack(input); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	} else {

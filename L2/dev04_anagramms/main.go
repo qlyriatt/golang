@@ -26,7 +26,7 @@ func isAnagram(runeKey []rune, word string) bool {
 	return true
 }
 
-func MapAnagrams(words []string) *map[string]*[]string {
+func mapAnagrams(words []string) *map[string]*[]string {
 
 	result := make(map[string]*[]string) // map[слово]{1, 2, 3 ... анаграммы}
 	used := make(map[string]struct{}, 0) // использованные слова
@@ -68,7 +68,7 @@ func MapAnagrams(words []string) *map[string]*[]string {
 var words = []string{"пятак", "пятка", "тяпка", "листок", "слиток", "столик"}
 
 func main() {
-	result := MapAnagrams(words)
+	result := mapAnagrams(words)
 	for key, val := range *result {
 		fmt.Printf("%q: %v\n", key, *val)
 	}

@@ -126,16 +126,16 @@ func main() {
 		if !sortReverse {
 			if tmp[0] == unsorted[keys[i]] {
 				return true
-			} else {
-				return false
 			}
-		} else {
-			if tmp[0] == unsorted[keys[i]] {
-				return false
-			} else {
-				return true
-			}
+			return false
+
 		}
+
+		if tmp[0] == unsorted[keys[i]] {
+			return false
+		}
+		return true
+
 	})
 
 	// вывод
